@@ -18,7 +18,7 @@ public class DoubledCoord {
 
     public Hex qdoubledToCube() {
         int q = col;
-        int r = (int) ((row - col) / 2);
+        int r = ((row - col) / 2);
         int s = -q - r;
         return new Hex(q, r, s);
     }
@@ -32,7 +32,7 @@ public class DoubledCoord {
 
 
     public Hex rdoubledToCube() {
-        int q = (int) ((col - row) / 2);
+        int q = (col - row) / 2;
         int r = row;
         int s = -q - r;
         return new Hex(q, r, s);

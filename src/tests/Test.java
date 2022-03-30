@@ -1,6 +1,7 @@
 package tests;
 
 import GUI.HexDisplay;
+import GUI.MainFrame;
 import Hexagons.Hex;
 import Hexagons.Layout;
 import Hexagons.Orientation;
@@ -17,18 +18,11 @@ public class Test {
         hexes.add(new Hex(0, 0, 0));
         hexes.addAll(hexes.get(0).neighbors());
 
-        //flat
-        /*
-        Layout layout = new Layout(new Orientation(3.0 / 2.0, 0.0, sqrt(3.0) / 2.0, sqrt(3.0),
-                2.0 / 3.0, 0.0, -1.0 / 3.0, sqrt(3.0) / 3.0,
-                0.0), new Point(50, 50), new Point(200, 200));
-        */
+        //peut être pointy ou flat
+        Layout layout = new Layout(Layout.pointy, new Point(50, 50), new Point(200, 200));
 
-        //pointy
-        Layout layout = new Layout(new Orientation(sqrt(3.0), sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0,
-                sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0,
-                0.5), new Point(50, 50), new Point(200, 200));
-
-        HexDisplay display = new HexDisplay(hexes, layout);
+        MainFrame frame = new MainFrame();
+        HexDisplay canvas = new HexDisplay(hexes, layout);
+        frame.add(canvas);
     }
 }
