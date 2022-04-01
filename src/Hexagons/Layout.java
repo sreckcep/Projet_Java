@@ -14,7 +14,6 @@ public class Layout {
     public final Point origin;
     static public Orientation pointy = new Orientation(Math.sqrt(3.0), Math.sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0, Math.sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
     static public Orientation flat = new Orientation(3.0 / 2.0, 0.0, Math.sqrt(3.0) / 2.0, Math.sqrt(3.0), 2.0 / 3.0, 0.0, -1.0 / 3.0, Math.sqrt(3.0) / 3.0, 0.0);
-
     public Point hexToPixel(Hex h) {
         Orientation M = orientation;
         double x = (M.f0 * h.getQ() + M.f1 * h.getR()) * size.x;

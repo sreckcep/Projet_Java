@@ -23,6 +23,6 @@ public class Test {
 
         MainFrame frame = new MainFrame();
         HexDisplay canvas = new HexDisplay(hexes, layout);
-        frame.add(canvas);
+        frame.add(canvas).validate();
     }
 }

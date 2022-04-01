@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * classe principale qui contiendra le reste des composants
+ */
 public class MainFrame extends Frame {
 
     public MainFrame(){
