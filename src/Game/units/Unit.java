@@ -1,6 +1,12 @@
 package Game.units;
 
 public class Unit {
+    public Unit(int move, int life, int damage) {
+        this.move = move;
+        this.life = life;
+        this.damage = damage;
+    }
+
     private int move;
     private int life;
     private int damage;
