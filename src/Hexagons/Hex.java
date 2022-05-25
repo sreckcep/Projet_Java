@@ -11,7 +11,7 @@ public class Hex {
         this.q = q;
         this.r = r;
         this.s = s;
-        if (q + r + s != 0) throw new IllegalArgumentException("q + r + s doit etre egal a 0");
+        if (q + r + s != 0) throw new IllegalArgumentException("q + r + s must be equal to 0");
     }
 
     private final int q;
@@ -103,5 +103,10 @@ public class Hex {
 
     public int getS() {
         return s;
+    }
+
+    public int[] getCoord(){
+        int[] coords = {q, r, s};
+        return  coords;
     }
 }
