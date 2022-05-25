@@ -1,5 +1,6 @@
 package Game;
 
+import Game.units.Unit;
 import Hexagons.Hex;
 
 public class Cell extends Hex{
