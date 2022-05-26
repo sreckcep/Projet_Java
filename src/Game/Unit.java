@@ -1,7 +1,5 @@
 package Game;
 
-import java.util.ArrayList;
-
 import Hexagons.Hex;
 
 public class Unit {

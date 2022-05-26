@@ -3,13 +3,7 @@ package GUI;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import Game.Unit;
-import Game.units.Tank;
-import Hexagons.Hex;
 import Hexagons.Layout;
 import Hexagons.Point;
 

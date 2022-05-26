@@ -1,21 +1,21 @@
 package GUI;
 
-import java.awt.*;
-import java.awt.event.*;
-import Hexagons.*;
-import Hexagons.Point;
-
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import Game.Army;
 import Game.Unit;
-import Game.units.Tank;
+import Hexagons.Hex;
+import Hexagons.Layout;
+import Hexagons.Point;
 
-import java.util.HashMap;
 public class Board extends Canvas {
 
     private Map<String, Hex> hexes;
@@ -45,6 +45,7 @@ public class Board extends Canvas {
             return false;
         }
     }
+
 
     /**
      * build a board with given size parameter
@@ -97,6 +98,8 @@ public class Board extends Canvas {
             polygon.closePath();
 
             g2d.draw(polygon);
+            
+            
 
             
 
@@ -104,6 +107,12 @@ public class Board extends Canvas {
             Point stringCoord = layout.hexToPixel(hex);
             //draw unit
             if (hex.getUnit() != null){
+                if (hex.getUnit().getArmy().getName().equals("protosses"))
+                    g2d.setColor(Color.yellow);
+                else
+                    g2d.setColor(Color.pink);
+                g2d.fill(polygon);
+                g2d.setColor(Color.BLACK);
                 g2d.drawString(hex.getUnit().getName(), (int) stringCoord.x, (int) stringCoord.y);
             }
             //draw coordinates for user's convenience
@@ -114,16 +123,6 @@ public class Board extends Canvas {
     public Map<String, Hex> getHexes(){
             return this.hexes;
     }
-
-    /*
-    private void wait(int milliSeconds){
-        try {
-            Thread.sleep(milliSeconds);
-        } catch (Exception e) {
-            
-        }
-        
-    }*/
 
     public void start(){
         Army zergs = new Army("zergs");
@@ -147,7 +146,7 @@ public class Board extends Canvas {
         Scanner input = new Scanner(System.in);
         int turnCount = 1;
         Army currentArmy = zergs;
-        while (true){
+        while (!zergs.isEmpty() && !protosses.isEmpty()){
             //zerg turn
             if (turnCount % 2 == 0)
                 currentArmy = protosses;
@@ -170,6 +169,7 @@ public class Board extends Canvas {
             repaint();
             turnCount++;
         }
+        input.close();
     }
 }
 
