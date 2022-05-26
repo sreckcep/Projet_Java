@@ -1,14 +1,17 @@
 package GUI;
 
-import java.awt.*;
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Game.Cell;
+import Game.Unit;
+import Game.units.Tank;
 import Hexagons.Hex;
+import Hexagons.Layout;
+import Hexagons.Point;
 
 /**
  * classe principale qui contiendra le reste des composants
@@ -21,7 +24,7 @@ public class HexGame extends Frame {
 
     private void initUI(){
         setTitle("HexGame");
-        setSize(720, 480);
+        setSize(1000, 1000);
         setVisible(true);
 
         //assure l'arrêt du programme à la fermeture de la fenêtre
@@ -34,24 +37,12 @@ public class HexGame extends Frame {
         );
     }
 
-    public Map<int[],Cell> getGameCells(){
-        //temporary
-        int mapSize = 3;
-        //creates a map of size mapSize
-        Map<int[], Cell> cells = new HashMap<int[], Cell>();
-        Hex baseHex = 
-        cells.add(new Hex(0, 0, 0));
-        for (int i = 0; i < mapSize; i++) {
-            for (Hex hex : cells) {
-                cells.addAll(hex.neighbors());
-            } 
-        }
-    }
     public static void main(String[] args){
         HexGame game = new HexGame();
-        Board board = new Board();
+        Board board = new Board(new Layout(Layout.pointy, new Point(40, 40), new Point(300, 300)));
         game.add(board);
         game.validate();
+        board.start();
     }
 
     

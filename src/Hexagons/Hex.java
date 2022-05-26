@@ -6,7 +6,14 @@ package Hexagons;
 
 import java.util.ArrayList;
 
+import GUI.Board;
+import Game.Unit;
+
 public class Hex {
+
+    private Unit unit;
+    private Board board;
+
     public Hex(int q, int r, int s) {
         this.q = q;
         this.r = r;
@@ -14,10 +21,38 @@ public class Hex {
         if (q + r + s != 0) throw new IllegalArgumentException("q + r + s must be equal to 0");
     }
 
+    public static Boolean isValid(Board board, Hex hex){
+        if (hex == null){
+            return false;
+        }
+        return board.getHexes().containsKey(hex.getCoord());
+    }
+
+    public Unit getUnit() {
+        return this.unit;
+    }
+
+    public Hex setUnit(Unit unit) {
+        this.unit = unit;
+        return this;
+    }
+
+    public Hex setBoard(Board board){
+        this.board = board;
+        return this;
+    }
+
+    public Board getBoard(){
+        return this.board;
+    }
+
+
+    //___________________Hexagon coordinate system_____________________\\
+    
     private final int q;
     private final int r;
     private final int s;
-
+    
     static public ArrayList<Hex> directions = new ArrayList<Hex>() {{
         add(new Hex(1, 0, -1));
         add(new Hex(1, -1, 0));
@@ -105,8 +140,8 @@ public class Hex {
         return s;
     }
 
-    public int[] getCoord(){
-        int[] coords = {q, r, s};
-        return  coords;
+    public String getCoord(){
+        String coords = Integer.toString(q) + "|" + Integer.toString(r) + "|" + Integer.toString(s);
+        return coords;
     }
 }

@@ -1,21 +1,49 @@
 package Game;
 
-import Game.units.Unit;
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Army {
-    private ArrayList<Unit> units;
-
-    public void addUnit(Unit unit){
-        units.add(unit);
+    
+    private String name;
+    private Map<String, Unit> units;
+    
+    public Army(String name){
+        this.name = name;
+        units = new HashMap<String, Unit>();
     }
 
-    public boolean removeUnit(Unit unit){
-        return units.remove(unit);
+    public boolean contains(String name){
+        return units.containsKey(name);
+    }
+
+    public Unit getUnit(String name){
+        return units.get(name);
+    }
+
+    public void addUnit(Unit unit){
+        units.put(unit.getName(), unit);
+    }
+
+    public void removeUnit(String name){
+        units.remove(name);
     }
 
     public boolean isEmpty(){
         return units.isEmpty();
     }
+
+    public Map<String, Unit> getUnits() {
+        return this.units;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 }
