@@ -21,11 +21,8 @@ public class Hex {
         if (q + r + s != 0) throw new IllegalArgumentException("q + r + s must be equal to 0");
     }
 
-    public static Boolean isValid(Board board, Hex hex){
-        if (hex == null){
-            return false;
-        }
-        return board.getHexes().containsKey(hex.getCoord());
+    public static Boolean isValid(Board board, String coords){
+        return board.getHexes().containsKey(coords);
     }
 
     public Unit getUnit() {

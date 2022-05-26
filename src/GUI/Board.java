@@ -139,34 +139,37 @@ public class Board extends Canvas {
         protosses.addUnit(zealot);
         protosses.addUnit(immortal);
         
-        this.placeUnit(zergling, "-2|-1|3");
+        this.placeUnit(zergling, "0|0|0");
         this.placeUnit(ultralisk, "-3|1|2");
-        this.placeUnit(zealot, "3|-1|-2");
+        this.placeUnit(zealot, "0|1|-1");
         this.placeUnit(immortal, "2|1|-3");
         repaint();
         Scanner input = new Scanner(System.in);
+        int turnCount = 1;
+        Army currentArmy = zergs;
         while (true){
             //zerg turn
-            System.out.println("select unit");
+            if (turnCount % 2 == 0)
+                currentArmy = protosses;
+            else
+                currentArmy = zergs;
+
+            System.out.println("select " + currentArmy.getName() + " unit");
             String selectedUnitName = input.nextLine();
-            while (!zergs.contains(selectedUnitName))
-                System.out.println("select unit");
+            while (!currentArmy.contains(selectedUnitName)){
+                System.out.println("select " + currentArmy.getName() + " unit");
                 selectedUnitName = input.nextLine();
-            Unit selectedUnit = zergs.getUnit(selectedUnitName);
+            }
+            Unit selectedUnit = currentArmy.getUnit(selectedUnitName);
             System.out.println("select target hex");
             String selectedTargetHexCoords = input.nextLine();
-            while (!hexes.containsKey(selectedTargetHexCoords) || !selectedUnit.move(hexes.get(selectedTargetHexCoords)))
+            while (!selectedUnit.move(selectedTargetHexCoords)){
                 System.out.println("select target hex");    
                 selectedTargetHexCoords = input.nextLine();
-            
-            //protoss turn
-            selectedUnitName = input.nextLine();
-            while (!protosses.contains(selectedUnitName))
-                selectedUnitName = input.nextLine();
-            selectedUnit = zergs.getUnit(selectedUnitName);
-            selectedTargetHexCoords = input.nextLine();
-            while (!hexes.containsKey(selectedTargetHexCoords) || !selectedUnit.move(hexes.get(selectedTargetHexCoords)))
-                selectedTargetHexCoords = input.nextLine();
+            }
+            repaint();
+            turnCount++;
         }
     }
 }
+

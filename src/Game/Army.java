@@ -24,6 +24,7 @@ public class Army {
 
     public void addUnit(Unit unit){
         units.put(unit.getName(), unit);
+        unit.setArmy(this);
     }
 
     public void removeUnit(String name){
